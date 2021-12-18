@@ -30,9 +30,9 @@ class StreamBloc extends Bloc<StreamEvent, StreamState> {
       emit(StreamLoading());
       emit(StreamHistory());
     });
-    on<SignUp>((event, emit) {
+    on<More>((event, emit) {
       emit(StreamLoading());
-      emit(StreamHistory());
+      emit(StreamMore());
     });
   }
 }

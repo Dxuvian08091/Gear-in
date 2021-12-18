@@ -24,25 +24,25 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         home: BlocBuilder<StreamBloc, StreamState>(builder: (context, state) {
           if (state is StreamLogin) {
-            const LoginWidget();
+            return const LoginWidget();
           }
           if (state is StreamSignUp) {
-            const SignUpWidget();
+            return const SignUpWidget();
           }
           if (state is StreamHome) {
-            const HomeWidget();
+            return const HomeWidget();
           }
           if (state is StreamCampaign) {
-            const InboxCampaignWidget();
+            return const InboxCampaignWidget();
           }
           if (state is StreamNotification) {
-            const InboxNotificationWidget();
+            return const InboxNotificationWidget();
           }
           if (state is StreamHistory) {
-            const HistoryWidget();
+            return const HistoryWidget();
           }
           if (state is StreamMore) {
-            const MoreWidget();
+           return const MoreWidget();
           }
           return const LoadingIndicator();
         }),
