@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gearin/bloc/stream_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'campaign.dart';
-import 'history.dart';
-import 'more.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({Key? key}) : super(key: key);
@@ -98,12 +97,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    // ignore: prefer_const_constructors
-                                    Padding(
-                                      padding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              5, 0, 5, 0),
-                                      child: const Icon(
+                                    const Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5, 0, 5, 0),
+                                      child: Icon(
                                         Icons.location_on,
                                         color: Color(0xFF303030),
                                         size: 24,
@@ -529,13 +526,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                           ),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const InboxCampaignWidget(),
-                                ),
-                              );
+                              BlocProvider.of<StreamBloc>(context)
+                                  .add(Campaign());
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -566,12 +558,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                           ),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const HistoryWidget(),
-                                ),
-                              );
+                              BlocProvider.of<StreamBloc>(context)
+                                  .add(History());
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -585,7 +573,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     size: 24,
                                   ),
                                 ),
-                                Text('History', style: GoogleFonts.poppins()),
+                                Text(
+                                  'History',
+                                  style: GoogleFonts.poppins(),
+                                ),
                               ],
                             ),
                           ),
@@ -602,12 +593,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           ),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const MoreWidget(),
-                                ),
-                              );
+                              BlocProvider.of<StreamBloc>(context).add(More());
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,

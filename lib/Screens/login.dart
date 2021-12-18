@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gearin/Screens/sign_up.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gearin/bloc/stream_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'home.dart';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({Key? key}) : super(key: key);
@@ -11,16 +11,16 @@ class LoginWidget extends StatefulWidget {
 }
 
 class _LoginWidgetState extends State<LoginWidget> {
-  late TextEditingController textController1;
-  late TextEditingController textController2;
+  late TextEditingController usernameController;
+  late TextEditingController passwordController;
   late bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    textController1 = TextEditingController();
-    textController2 = TextEditingController();
+    usernameController = TextEditingController();
+    passwordController = TextEditingController();
     passwordVisibility = false;
   }
 
@@ -54,13 +54,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(30, 50, 30, 0),
                   child: TextFormField(
-                    controller: textController1,
+                    controller: usernameController,
                     obscureText: false,
                     decoration: InputDecoration(
                       isDense: true,
                       labelText: 'Username',
-                      labelStyle:
-                          GoogleFonts.poppins(fontWeight: FontWeight.normal),
+                      labelStyle: GoogleFonts.poppins(),
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(
                           color: Color(0xFF303030),
@@ -79,13 +78,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                         Icons.person,
                       ),
                     ),
-                    style: GoogleFonts.poppins(fontWeight: FontWeight.normal),
+                    style: GoogleFonts.poppins(),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(30, 10, 30, 0),
                   child: TextFormField(
-                    controller: textController2,
+                    controller: passwordController,
                     obscureText: !passwordVisibility,
                     decoration: InputDecoration(
                       isDense: true,
@@ -122,19 +121,14 @@ class _LoginWidgetState extends State<LoginWidget> {
                         ),
                       ),
                     ),
-                    style: GoogleFonts.poppins(fontWeight: FontWeight.normal),
+                    style: GoogleFonts.poppins(),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                   child: ElevatedButton(
                     onPressed: () async {
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const HomeWidget(),
-                        ),
-                      );
+                      BlocProvider.of<StreamBloc>(context).add(Home());
                     },
                     child: const Text(
                       'Login',
@@ -163,12 +157,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const SignUpWidget(),
-                        ),
-                      );
+                      BlocProvider.of<StreamBloc>(context).add(SignUp());
                     },
                     child: const Text(
                       'Sign up | Register',

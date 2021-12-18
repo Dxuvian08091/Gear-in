@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gearin/bloc/stream_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'campaign.dart';
-import 'history.dart';
-import 'home.dart';
-import 'login.dart';
 
 class MoreWidget extends StatefulWidget {
   const MoreWidget({Key? key}) : super(key: key);
@@ -523,12 +521,7 @@ class _MoreWidgetState extends State<MoreWidget> {
                           ),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const LoginWidget(),
-                                ),
-                              );
+                              BlocProvider.of<StreamBloc>(context).add(Login());
                             },
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -599,12 +592,7 @@ class _MoreWidgetState extends State<MoreWidget> {
                           ),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const HomeWidget(),
-                                ),
-                              );
+                              BlocProvider.of<StreamBloc>(context).add(Home());
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -638,13 +626,8 @@ class _MoreWidgetState extends State<MoreWidget> {
                           ),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const InboxCampaignWidget(),
-                                ),
-                              );
+                              BlocProvider.of<StreamBloc>(context)
+                                  .add(Campaign());
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -681,12 +664,8 @@ class _MoreWidgetState extends State<MoreWidget> {
                           ),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const HistoryWidget(),
-                                ),
-                              );
+                              BlocProvider.of<StreamBloc>(context)
+                                  .add(History());
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,

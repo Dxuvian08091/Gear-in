@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gearin/bloc/stream_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'campaign.dart';
-import 'history.dart';
-import 'home.dart';
-import 'more.dart';
 
 class InboxNotificationWidget extends StatefulWidget {
   const InboxNotificationWidget({Key? key}) : super(key: key);
@@ -48,12 +45,7 @@ class _InboxNotificationWidgetState extends State<InboxNotificationWidget> {
                     children: [
                       InkWell(
                         onTap: () async {
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const InboxCampaignWidget(),
-                            ),
-                          );
+                          BlocProvider.of<StreamBloc>(context).add(Campaign());
                         },
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.5,
@@ -63,13 +55,8 @@ class _InboxNotificationWidgetState extends State<InboxNotificationWidget> {
                           ),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const InboxCampaignWidget(),
-                                ),
-                              );
+                              BlocProvider.of<StreamBloc>(context)
+                                  .add(Campaign());
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -215,12 +202,7 @@ class _InboxNotificationWidgetState extends State<InboxNotificationWidget> {
                           ),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const HomeWidget(),
-                                ),
-                              );
+                              BlocProvider.of<StreamBloc>(context).add(Home());
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -286,12 +268,8 @@ class _InboxNotificationWidgetState extends State<InboxNotificationWidget> {
                           ),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const HistoryWidget(),
-                                ),
-                              );
+                              BlocProvider.of<StreamBloc>(context)
+                                  .add(History());
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -325,12 +303,7 @@ class _InboxNotificationWidgetState extends State<InboxNotificationWidget> {
                           ),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const MoreWidget(),
-                                ),
-                              );
+                              BlocProvider.of<StreamBloc>(context).add(More());
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,

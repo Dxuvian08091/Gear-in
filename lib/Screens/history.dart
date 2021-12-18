@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gearin/bloc/stream_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'campaign.dart';
-import 'home.dart';
-import 'more.dart';
 
 class HistoryWidget extends StatefulWidget {
   const HistoryWidget({Key? key}) : super(key: key);
@@ -131,12 +130,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                         ),
                         ElevatedButton(
                           onPressed: () async {
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const HomeWidget(),
-                              ),
-                            );
+                            BlocProvider.of<StreamBloc>(context).add(Home());
                           },
                           child: const Text(
                             'Request a Ride',
@@ -193,12 +187,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                           ),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const HomeWidget(),
-                                ),
-                              );
+                              BlocProvider.of<StreamBloc>(context).add(Home());
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -232,13 +221,8 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                           ),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const InboxCampaignWidget(),
-                                ),
-                              );
+                              BlocProvider.of<StreamBloc>(context)
+                                  .add(Campaign());
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -307,12 +291,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                           ),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const MoreWidget(),
-                                ),
-                              );
+                              BlocProvider.of<StreamBloc>(context).add(More());
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,

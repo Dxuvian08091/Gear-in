@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gearin/bloc/stream_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'login.dart';
 
 class SignUpWidget extends StatefulWidget {
   const SignUpWidget({Key? key}) : super(key: key);
@@ -10,26 +11,25 @@ class SignUpWidget extends StatefulWidget {
 }
 
 class _SignUpWidgetState extends State<SignUpWidget> {
-  late String dropDownValue;
-  late TextEditingController textController5;
-  late TextEditingController textController1;
-  late TextEditingController textController2;
+  late TextEditingController mobileNumberController;
+  late TextEditingController usernameController;
+  late TextEditingController passwordController;
   late bool passwordVisibility1;
-  late TextEditingController textController3;
+  late TextEditingController passwordConfirmController;
   late bool passwordVisibility2;
-  late TextEditingController textController4;
+  late TextEditingController emailController;
   late final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    textController1 = TextEditingController();
-    textController2 = TextEditingController();
+    usernameController = TextEditingController();
+    passwordController = TextEditingController();
     passwordVisibility1 = false;
-    textController3 = TextEditingController();
+    passwordConfirmController = TextEditingController();
     passwordVisibility2 = false;
-    textController4 = TextEditingController();
-    textController5 = TextEditingController();
+    emailController = TextEditingController();
+    mobileNumberController = TextEditingController();
   }
 
   @override
@@ -60,7 +60,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(30, 40, 30, 0),
                   child: TextFormField(
-                    controller: textController1,
+                    controller: usernameController,
                     obscureText: false,
                     decoration: InputDecoration(
                       isDense: true,
@@ -92,7 +92,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(30, 10, 30, 0),
                   child: TextFormField(
-                    controller: textController2,
+                    controller: passwordController,
                     obscureText: !passwordVisibility1,
                     decoration: InputDecoration(
                       isDense: true,
@@ -136,7 +136,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(30, 10, 30, 0),
                   child: TextFormField(
-                    controller: textController3,
+                    controller: passwordConfirmController,
                     obscureText: !passwordVisibility2,
                     decoration: InputDecoration(
                       isDense: true,
@@ -180,7 +180,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(30, 10, 30, 0),
                   child: TextFormField(
-                    controller: textController4,
+                    controller: emailController,
                     obscureText: false,
                     decoration: InputDecoration(
                       isDense: true,
@@ -212,7 +212,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(30, 10, 30, 0),
                   child: TextFormField(
-                    controller: textController5,
+                    controller: mobileNumberController,
                     obscureText: false,
                     decoration: InputDecoration(
                       isDense: true,
@@ -246,12 +246,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                   child: ElevatedButton(
                     onPressed: () async {
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LoginWidget(),
-                        ),
-                      );
+                      BlocProvider.of<StreamBloc>(context).add(Login());
                     },
                     child: const Text(
                       'Register',
@@ -297,12 +292,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         ),
                         InkWell(
                           onTap: () async {
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const LoginWidget(),
-                              ),
-                            );
+                            BlocProvider.of<StreamBloc>(context).add(Login());
                           },
                           child: const Text(
                             'LOGIN',
